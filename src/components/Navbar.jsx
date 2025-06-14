@@ -25,8 +25,8 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
       <header>
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="https://github.com/ShubhamRajChauhan/ECOM-SPRING">
-              ECOM-SPRING
+            <a className="navbar-brand" href="https://telusko.com/">
+              Telusko
             </a>
             <button
               className="navbar-toggler"
