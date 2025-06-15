@@ -36,10 +36,7 @@
 package com.telusko.ecom_project.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -50,67 +47,91 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
-    private String desc;
     private String brand;
+
+    @Column(length = 1000)
+    private String description;
+
     private BigDecimal price;
     private String category;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private int stockQuantity;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date releaseDate;
-    private boolean available;
-    private int quantity;
+
+    private boolean productAvailable;
+
+    private String imageName;
+    private String imageType;
+
+    @Lob
+    private byte[] imageData;
 
     public Product() {
     }
 
-    public Product(int id, String name, String desc, String brand, BigDecimal price, String category, Date releaseDate, boolean available, int quantity) {
+    public Product(int id, String name, String brand, String description, BigDecimal price, String category,
+                   int stockQuantity, Date releaseDate, boolean productAvailable,
+                   String imageName, String imageType, byte[] imageData) {
         this.id = id;
         this.name = name;
-        this.desc = desc;
         this.brand = brand;
+        this.description = description;
         this.price = price;
         this.category = category;
+        this.stockQuantity = stockQuantity;
         this.releaseDate = releaseDate;
-        this.available = available;
-        this.quantity = quantity;
+        this.productAvailable = productAvailable;
+        this.imageName = imageName;
+        this.imageType = imageType;
+        this.imageData = imageData;
     }
 
     // Getters
     public int getId() { return id; }
     public String getName() { return name; }
-    public String getDesc() { return desc; }
     public String getBrand() { return brand; }
+    public String getDescription() { return description; }
     public BigDecimal getPrice() { return price; }
     public String getCategory() { return category; }
+    public int getStockQuantity() { return stockQuantity; }
     public Date getReleaseDate() { return releaseDate; }
-    public boolean isAvailable() { return available; }
-    public int getQuantity() { return quantity; }
+    public boolean isProductAvailable() { return productAvailable; }
+    public String getImageName() { return imageName; }
+    public String getImageType() { return imageType; }
+    public byte[] getImageData() { return imageData; }
 
     // Setters
     public void setId(int id) { this.id = id; }
     public void setName(String name) { this.name = name; }
-    public void setDesc(String desc) { this.desc = desc; }
     public void setBrand(String brand) { this.brand = brand; }
+    public void setDescription(String description) { this.description = description; }
     public void setPrice(BigDecimal price) { this.price = price; }
     public void setCategory(String category) { this.category = category; }
+    public void setStockQuantity(int stockQuantity) { this.stockQuantity = stockQuantity; }
     public void setReleaseDate(Date releaseDate) { this.releaseDate = releaseDate; }
-    public void setAvailable(boolean available) { this.available = available; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setProductAvailable(boolean productAvailable) { this.productAvailable = productAvailable; }
+    public void setImageName(String imageName) { this.imageName = imageName; }
+    public void setImageType(String imageType) { this.imageType = imageType; }
+    public void setImageData(byte[] imageData) { this.imageData = imageData; }
 
-    // toString
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
                 ", brand='" + brand + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 ", category='" + category + '\'' +
+                ", stockQuantity=" + stockQuantity +
                 ", releaseDate=" + releaseDate +
-                ", available=" + available +
-                ", quantity=" + quantity +
+                ", productAvailable=" + productAvailable +
+                ", imageName='" + imageName + '\'' +
+                ", imageType='" + imageType + '\'' +
                 '}';
     }
 }
